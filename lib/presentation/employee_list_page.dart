@@ -32,52 +32,55 @@ class _EmployeeListPageState extends State<EmployeeListPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: BlocBuilder<EmployeeCubit, EmployeeState>(
-              builder: (context, state) {
-                if (state.employees.isNotEmpty) {
-                  final employees = state.employees;
-                  List<Employee> currentEmployees = employees
-                      .where((employee) => employee.endDate == null)
-                      .toList();
-                  List<Employee> previousEmployees = employees
-                      .where((employee) => employee.endDate != null)
-                      .toList();
+      body: BlocBuilder<EmployeeCubit, EmployeeState>(
+        builder: (context, state) {
+          if (state.employees.isNotEmpty) {
+            final employees = state.employees;
+            List<Employee> currentEmployees = employees
+                .where((employee) => employee.endDate == null)
+                .toList();
+            List<Employee> previousEmployees = employees
+                .where((employee) => employee.endDate != null)
+                .toList();
 
-                  return SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        listHeading("Current employees"),
-                        employeeListWidget(
-                            currentEmployees, employeeBloc, context),
-                        listHeading("Previous employees"),
-                        employeeListWidget(
-                            previousEmployees, employeeBloc, context),
-                      ],
-                    ),
-                  );
-                } else {
-                  return Center(
-                    child: Image.asset("assets/images/notFound.png"),
-                  );
-                }
-              },
-            ),
-          ),
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView(
+                    children: [
+                      currentEmployees.isNotEmpty
+                          ? listHeading("Current employees")
+                          : Container(),
+                      employeeListWidget(
+                          currentEmployees, employeeBloc, context),
+                      previousEmployees.isNotEmpty
+                          ? listHeading("Previous employees")
+                          : Container(),
+                      employeeListWidget(
+                          previousEmployees, employeeBloc, context),
+                    ],
+                  ),
+                ),
 
-          // Swipe left to delete
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
-            color: Colors.grey.withOpacity(0.2),
-            child: const Text(
-              "Swipe left to delete",
-              style: TextStyle(color: Colors.grey),
-            ),
-          ),
-        ],
+                // Swipe left to delete
+                Container(
+                  width: double.infinity,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+                  color: Colors.grey.withOpacity(0.2),
+                  child: const Text(
+                    "Swipe left to delete",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Center(
+              child: Image.asset("assets/images/notFound.png"),
+            );
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         shape: RoundedRectangleBorder(

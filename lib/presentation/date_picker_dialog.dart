@@ -28,37 +28,35 @@ class _DatePickerDialogState extends State<DatePickerDialog> {
         borderRadius: BorderRadius.circular(14),
       ),
       child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  widget.isSelectingEndDate
-                      ? _buildDateSelectionButton(DateSelection.noDate)
-                      : Container(),
-                  _buildDateSelectionButton(DateSelection.today),
-                  widget.isSelectingEndDate
-                      ? Container()
-                      : _buildDateSelectionButton(DateSelection.nextMonday),
-                ],
-              ),
-              widget.isSelectingEndDate
-                  ? Container()
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        _buildDateSelectionButton(DateSelection.nextTuesday),
-                        _buildDateSelectionButton(DateSelection.afterOneWeek),
-                      ],
-                    ),
-              tableCalendar(),
-              const SizedBox(height: 16.0),
-              datePickerBottomRow(),
-            ],
-          ),
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                widget.isSelectingEndDate
+                    ? _buildDateSelectionButton(DateSelection.noDate)
+                    : Container(),
+                _buildDateSelectionButton(DateSelection.today),
+                widget.isSelectingEndDate
+                    ? Container()
+                    : _buildDateSelectionButton(DateSelection.nextMonday),
+              ],
+            ),
+            widget.isSelectingEndDate
+                ? Container()
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildDateSelectionButton(DateSelection.nextTuesday),
+                      _buildDateSelectionButton(DateSelection.afterOneWeek),
+                    ],
+                  ),
+            tableCalendar(),
+            const SizedBox(height: 16.0),
+            datePickerBottomRow(),
+          ],
         ),
       ),
     );
