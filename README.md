@@ -1,16 +1,33 @@
-# employee_management_system
+# Employee Management System
 
-A new Flutter project.
+This is a Flutter app for managing employee data. You can add, edit, and delete employee records, and the data is persisted using a local database.
+The app uses the BLoC/Cubit architecture for state management and includes a custom-designed date picker.
+
+## Features
+
+- Add new employees with details like name, role, start date, and end date.
+- Edit existing employee data.
+- Delete employee records.
+- Persist employee data locally.
+- User-friendly date picker.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To get started with this app, follow these steps:
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository to your local machine:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+   ```bash
+   git clone https://github.com/toseefkhan403/employee-management-system.git
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Open the project in your preferred code editor.
+
+3. Install the required dependencies by running:
+
+    ```bash
+   flutter pub get
+
+4. Run the app on an emulator or physical device:
+  
+    ```bash
+   flutter run
